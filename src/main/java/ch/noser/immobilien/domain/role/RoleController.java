@@ -2,6 +2,7 @@ package ch.noser.immobilien.domain.role;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,10 +19,5 @@ public class RoleController {
     @PostMapping({"", "/"})
     public Role addRole(@RequestBody Role role) {
         return roleService.addRole(role);
-
-    }
-    @GetMapping({"/name"})
-    public Role addRole(@RequestParam("name") String name) {
-        return roleService.findRoleByName(name);
     }
 }

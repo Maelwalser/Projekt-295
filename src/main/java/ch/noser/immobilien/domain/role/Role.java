@@ -22,8 +22,7 @@ public class Role{
     private String name;
 
 
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
+
 
 
     public UUID getId() {
@@ -42,11 +41,4 @@ public class Role{
         this.name = name;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }
