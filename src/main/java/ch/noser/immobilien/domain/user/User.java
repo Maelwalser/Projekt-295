@@ -1,9 +1,11 @@
 package ch.noser.immobilien.domain.user;
 
+import ch.noser.immobilien.domain.property.Property;
 import ch.noser.immobilien.domain.role.Role;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,6 +31,9 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
+
+    @OneToMany(mappedBy = "user")
+    private List<Property> properties;
 
     public UUID getId() {
         return id;

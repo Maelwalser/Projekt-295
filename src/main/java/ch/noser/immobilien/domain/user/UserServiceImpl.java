@@ -1,6 +1,7 @@
 package ch.noser.immobilien.domain.user;
 
 
+import ch.noser.immobilien.domain.property.Property;
 import ch.noser.immobilien.domain.role.Role;
 import ch.noser.immobilien.domain.role.RoleRepository;
 import ch.noser.immobilien.domain.role.RoleService;
@@ -16,14 +17,13 @@ public class UserServiceImpl implements  UserService{
 
     private UserRepository userRepository;
     private RoleService roleService;
-    private RoleRepository roleRepository;
+
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, RoleRepository roleRepository){
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService){
         this.userRepository = userRepository;
         this.roleService = roleService;
-        this.roleRepository = roleRepository;
     }
 
 
@@ -36,5 +36,10 @@ public class UserServiceImpl implements  UserService{
             user.setRole(roleService.findRoleByName("Client"));
         }
         return userRepository.save(user);
+    }
+
+    @Override
+    public Property addProperty(Property property) {
+        return null;
     }
 }
