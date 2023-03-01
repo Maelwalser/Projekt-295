@@ -1,5 +1,6 @@
 package ch.noser.immobilien.domain.user;
 
+import ch.noser.immobilien.domain.application.Application;
 import ch.noser.immobilien.domain.property.Property;
 import ch.noser.immobilien.domain.role.Role;
 import jakarta.persistence.*;
@@ -35,6 +36,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Property> properties;
 
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Application> applications;
     public UUID getId() {
         return id;
     }
@@ -74,4 +79,22 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
+    }
+
+
 }

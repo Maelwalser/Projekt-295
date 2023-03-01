@@ -1,29 +1,29 @@
 package ch.noser.immobilien.domain.user;
 
-
-import ch.noser.immobilien.domain.property.Property;
-import ch.noser.immobilien.domain.role.Role;
-import ch.noser.immobilien.domain.role.RoleRepository;
+import ch.noser.immobilien.domain.property.PropertyService;
 import ch.noser.immobilien.domain.role.RoleService;
-import ch.noser.immobilien.domain.role.RoleServiceImpl;
-import ch.noser.immobilien.domain.role.dto.RoleDTO;
+import ch.noser.immobilien.domain.user.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+
 
 @Service
 public class UserServiceImpl implements  UserService{
 
     private UserRepository userRepository;
     private RoleService roleService;
+    private PropertyService propertyService;
 
+    private UserMapper userMapper;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService){
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PropertyService propertyService, UserMapper userMapper){
         this.userRepository = userRepository;
         this.roleService = roleService;
+        this.propertyService = propertyService;
+        this.userMapper = userMapper;
     }
 
 
@@ -39,7 +39,9 @@ public class UserServiceImpl implements  UserService{
     }
 
     @Override
-    public Property addProperty(Property property) {
-        return null;
+    public User findByName(String firstname, String lastname) {
+        return userRepository.findByFirstnameAndLastnameLike(firstname,lastname);
     }
+
+
 }

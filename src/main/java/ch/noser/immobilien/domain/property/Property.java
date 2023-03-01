@@ -1,10 +1,12 @@
 package ch.noser.immobilien.domain.property;
 
 
+import ch.noser.immobilien.domain.application.Application;
 import ch.noser.immobilien.domain.user.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -37,6 +39,8 @@ public class Property {
     @JoinColumn(name = "agent_id")
     private User user;
 
+    @OneToMany(mappedBy = "property")
+    private List<Application> applications;
 
     public UUID getId() {
         return id;
@@ -84,5 +88,13 @@ public class Property {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
