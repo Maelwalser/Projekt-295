@@ -1,6 +1,5 @@
 package ch.noser.immobilien.domain.application.dto;
 
-import java.util.UUID;
 
 public class ApplicationDTO {
 

@@ -6,6 +6,9 @@ import ch.noser.immobilien.domain.user.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -13,16 +16,14 @@ public class UserServiceImpl implements  UserService{
 
     private UserRepository userRepository;
     private RoleService roleService;
-    private PropertyService propertyService;
 
     private UserMapper userMapper;
 
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PropertyService propertyService, UserMapper userMapper){
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, UserMapper userMapper){
         this.userRepository = userRepository;
         this.roleService = roleService;
-        this.propertyService = propertyService;
         this.userMapper = userMapper;
     }
 
@@ -41,6 +42,15 @@ public class UserServiceImpl implements  UserService{
     @Override
     public User findByName(String firstname, String lastname) {
         return userRepository.findByFirstnameAndLastnameLike(firstname,lastname);
+    }
+
+    @Override
+    public User findUserById(UUID id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isPresent()){
+            return optionalUser.get();
+        }
+        throw new NoSuchElementException("No User with id "+ id+ " found");
     }
 
 

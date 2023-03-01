@@ -1,6 +1,7 @@
 package ch.noser.immobilien.domain.property;
 
 import ch.noser.immobilien.domain.user.User;
+import ch.noser.immobilien.domain.user.UserService;
 import ch.noser.immobilien.domain.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,12 @@ import java.util.UUID;
 public class PropertyServiceImpl implements PropertyService{
 
     private PropertyRepository propertyRepository;
+    private UserService userService;
 
     @Autowired
-    public PropertyServiceImpl(PropertyRepository propertyRepository){
+    public PropertyServiceImpl(PropertyRepository propertyRepository, UserService userService){
         this.propertyRepository = propertyRepository;
+        this.userService = userService;
     }
 
 
@@ -34,19 +37,24 @@ public class PropertyServiceImpl implements PropertyService{
 
 
     @Override
-    public void deleteProperty(UUID id, User user) {
-        if(user.getRole().equals("Agent") && user.getProperties().contains(propertyRepository.findById(id))){
-        Optional<Property> optionalProperty = propertyRepository.findById(id);
-        if(optionalProperty.isPresent()){
-            propertyRepository.deleteById(id);
+    public void deleteProperty(UUID id, UUID userId) {
+        User user = userService.findUserById(userId);
+        if(user.getRole().getName().equals("Agent")){
+            Optional<Property> optionalProperty = propertyRepository.findById(id);
+            if(optionalProperty.isPresent() && optionalProperty.get().getUser().equals(user)){
+                propertyRepository.deleteById(id);
         }
+            else {
+
         throw new NoSuchElementException("No property with id " + id + " found!");
+            }
     }
 }
 
     @Override
-    public Property addProperty(Property property, User user){
-            if (user.getRole().equals("Agent")){
+    public Property addProperty(Property property, UUID userId){
+            User user = userService.findUserById(userId);
+            if (user.getRole().getName().equals("Agent")){
                 property.setUser(user);
                 return propertyRepository.save(property);
             }
@@ -57,10 +65,11 @@ public class PropertyServiceImpl implements PropertyService{
 
 
     @Override
-    public Property updateProperty(UUID id, User user, Property newProperty) {
-        if (user.getRole().equals("Agent") && user.getProperties().contains(propertyRepository.findById(id))){
+    public Property updateProperty(UUID id, UUID userId, Property newProperty) {
+        User user = userService.findUserById(userId);
+        if (user.getRole().getName().equals("Agent") ){
             Optional<Property> optionalProperty = propertyRepository.findById(id);
-            if(optionalProperty.isPresent()){
+            if(optionalProperty.isPresent() && optionalProperty.get().getUser().equals(user)){
                 newProperty.setId(optionalProperty.get().getId());
                 return propertyRepository.save(newProperty);
             }

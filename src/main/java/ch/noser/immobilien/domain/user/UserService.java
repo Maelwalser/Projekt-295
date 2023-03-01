@@ -1,6 +1,7 @@
 package ch.noser.immobilien.domain.user;
 
 
+import java.util.UUID;
 
 public interface UserService {
 
@@ -9,6 +10,8 @@ public interface UserService {
 
 
     User findByName(String firstname, String lastname);
+
+    User findUserById(UUID id);
 
 
 

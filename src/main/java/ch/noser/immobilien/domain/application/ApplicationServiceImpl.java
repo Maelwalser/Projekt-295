@@ -20,11 +20,12 @@ public class ApplicationServiceImpl implements ApplicationService{
 
     @Override
     public Application acceptApplication(User user, Application application) {
-        if(user.getRole().equals("Agent") && user.getProperties().contains(application.getProperty())){
-            application.setStatus("accepted");
+        //user.getProperties().contains(application.getProperty())
+        if(user.getRole().equals("Agent") ){
             for (Application appli : applicationRepository.findAllByProperty(application.getProperty())){
                 appli.setStatus("denied");
             }
+            application.setStatus("accepted");
             return application;
         }
         return null;
@@ -32,7 +33,7 @@ public class ApplicationServiceImpl implements ApplicationService{
 
     @Override
     public Application createApplication(User user, Application application, Property property) {
-        if (user.getRole().equals("Client")) {
+        if (user.getRole().equals("Client") && !applicationRepository.findAllByProperty(property).contains(user) ) {
             application.setUser(user);
             application.setProperty(property);
             return applicationRepository.save(application);
@@ -42,7 +43,8 @@ public class ApplicationServiceImpl implements ApplicationService{
 
     @Override
     public Application denyApplication(User user, Application application) {
-        if(user.getRole().equals("Agent") && user.getProperties().contains(application.getProperty())){
+        //user.getProperties().contains(application.getProperty())
+        if(user.getRole().equals("Agent") ){
             application.setStatus("denied");
             return application;
         }

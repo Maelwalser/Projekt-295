@@ -11,9 +11,7 @@ public class NumberValidator implements ConstraintValidator<Number, Integer>{
     public boolean isValid(Integer value, ConstraintValidatorContext context){
         if(value==null){
         return false;
-        } else if (value>0) {
-            return true;
         }
-        else return false;
+        return value>0;
     }
 }

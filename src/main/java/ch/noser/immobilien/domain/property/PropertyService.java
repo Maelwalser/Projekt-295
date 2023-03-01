@@ -8,10 +8,10 @@ import java.util.UUID;
 public interface PropertyService {
 
 
-    Property addProperty(Property property, User user);
-    void deleteProperty(UUID id, User user);
+    Property addProperty(Property property, UUID userId);
+    void deleteProperty(UUID id, UUID userId);
 
-    Property updateProperty(UUID id, User user,Property newProperty);
+    Property updateProperty(UUID id, UUID userId, Property newProperty);
 
     List<Property> findAllByCanton(String canton);
 

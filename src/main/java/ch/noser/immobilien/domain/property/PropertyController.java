@@ -25,9 +25,9 @@ public class PropertyController {
         this.userMapper = userMapper;
     }
 
-    @PostMapping({"/", ""})
-    public ResponseEntity<Property> addProperty(@RequestBody Property property, @RequestBody UserDTO user){
-        return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.addProperty(property, userMapper.fromDTO(user)));
+    @PostMapping({"/add/{id}"})
+    public ResponseEntity<Property> addProperty(@RequestBody Property property, @PathVariable("id")UUID id){
+        return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.addProperty(property, id));
     }
 
     @GetMapping({"/canton"})
@@ -42,15 +42,15 @@ public class PropertyController {
     }
 
 
-    @PostMapping({"/update/{id}"})
-    public ResponseEntity<Property> updateProperty(@PathVariable("id") UUID id, UserDTO userDTO, Property property){
-        return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.updateProperty(id, userMapper.fromDTO(userDTO), property));
+    @PostMapping({"/update/{id}/by/{userId}"})
+    public ResponseEntity<Property> updateProperty(@PathVariable("id") UUID id,@PathVariable("userId") UUID userId, @RequestBody Property property){
+        return ResponseEntity.status(HttpStatus.CREATED).body(propertyService.updateProperty(id, userId, property));
     }
 
 
-    @DeleteMapping({"/{id}"})
-    public void deleteProperty(@PathVariable("id") UUID id, UserDTO userDTO){
-        propertyService.deleteProperty(id, userMapper.fromDTO(userDTO));
+    @DeleteMapping({"/{id}/by/{userId}"})
+    public void deleteProperty(@PathVariable("id") UUID id, @PathVariable("userId") UUID userId){
+        propertyService.deleteProperty(id,userId);
     }
 
 

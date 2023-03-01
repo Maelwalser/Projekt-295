@@ -33,13 +33,13 @@ public class User {
     private Role role;
 
 
-    @OneToMany(mappedBy = "user")
-    private List<Property> properties;
 
 
 
     @OneToMany(mappedBy = "user")
     private List<Application> applications;
+
+
     public UUID getId() {
         return id;
     }
@@ -80,13 +80,6 @@ public class User {
         this.role = role;
     }
 
-    public List<Property> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(List<Property> properties) {
-        this.properties = properties;
-    }
 
     public List<Application> getApplications() {
         return applications;

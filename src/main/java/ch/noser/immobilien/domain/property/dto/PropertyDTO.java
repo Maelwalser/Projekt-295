@@ -10,6 +10,7 @@ public class PropertyDTO {
     private String Url;
 
 
+
     public String getCanton() {
         return canton;
     }
@@ -51,5 +52,5 @@ public class PropertyDTO {
     }
 
 
+    }
 
-}
