@@ -39,8 +39,7 @@ public class Property {
     @JoinColumn(name = "agent_id")
     private User user;
 
-    @OneToMany(mappedBy = "property")
-    private List<Application> applications;
+
 
     public UUID getId() {
         return id;

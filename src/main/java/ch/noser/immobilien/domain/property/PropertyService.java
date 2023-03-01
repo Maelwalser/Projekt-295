@@ -16,4 +16,6 @@ public interface PropertyService {
     List<Property> findAllByCanton(String canton);
 
     Property findByName(String name);
+
+    Property findPropertyById(UUID id);
 }

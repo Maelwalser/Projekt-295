@@ -36,8 +36,7 @@ public class User {
 
 
 
-    @OneToMany(mappedBy = "user")
-    private List<Application> applications;
+
 
 
     public UUID getId() {
@@ -81,13 +80,6 @@ public class User {
     }
 
 
-    public List<Application> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(List<Application> applications) {
-        this.applications = applications;
-    }
 
 
 }

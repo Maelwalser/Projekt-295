@@ -50,7 +50,7 @@ public class UserServiceImpl implements  UserService{
         if(optionalUser.isPresent()){
             return optionalUser.get();
         }
-        throw new NoSuchElementException("No User with id "+ id+ " found");
+        throw new NoSuchElementException("No user with id "+ id+ " found");
     }
 
 

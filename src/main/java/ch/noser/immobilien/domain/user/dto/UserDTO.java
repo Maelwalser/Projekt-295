@@ -6,18 +6,7 @@ import java.util.UUID;
 
 public class UserDTO {
 
-    private UUID id;
 
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public static class WithAll extends UserDTO{
         private String email;
         private String firstname;
 
@@ -52,4 +41,4 @@ public class UserDTO {
 
 
 
-}
+

@@ -4,13 +4,17 @@ import ch.noser.immobilien.domain.property.Property;
 import ch.noser.immobilien.domain.user.User;
 import org.springframework.context.ApplicationListener;
 
+import java.util.UUID;
+
 public interface ApplicationService {
 
-    Application acceptApplication(User user, Application application);
+    Application acceptApplication(UUID userId, UUID applicationId);
 
 
-    Application createApplication(User user, Application application, Property property);
+    Application createApplication(UUID userId, UUID propertyId);
 
-    Application denyApplication(User user, Application application);
+    Application denyApplication(UUID userId, UUID applicationId);
 
+
+    Application getApplicationById(UUID id);
 }

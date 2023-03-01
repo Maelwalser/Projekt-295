@@ -9,7 +9,5 @@ public interface UserMapper {
     UserDTO toDTO(User user);
     User fromDTO(UserDTO dto);
 
-    UserDTO.WithAll toAllDTo(User user);
-    User fromAllDTO (UserDTO.WithAll userDTO);
 
 }

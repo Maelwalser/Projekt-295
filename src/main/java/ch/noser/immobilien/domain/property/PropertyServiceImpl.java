@@ -2,7 +2,6 @@ package ch.noser.immobilien.domain.property;
 
 import ch.noser.immobilien.domain.user.User;
 import ch.noser.immobilien.domain.user.UserService;
-import ch.noser.immobilien.domain.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +44,6 @@ public class PropertyServiceImpl implements PropertyService{
                 propertyRepository.deleteById(id);
         }
             else {
-
         throw new NoSuchElementException("No property with id " + id + " found!");
             }
     }
@@ -71,6 +69,7 @@ public class PropertyServiceImpl implements PropertyService{
             Optional<Property> optionalProperty = propertyRepository.findById(id);
             if(optionalProperty.isPresent() && optionalProperty.get().getUser().equals(user)){
                 newProperty.setId(optionalProperty.get().getId());
+                newProperty.setUser(optionalProperty.get().getUser());
                 return propertyRepository.save(newProperty);
             }
             throw new NoSuchElementException("No property with id " + id + " found!");
@@ -80,8 +79,12 @@ public class PropertyServiceImpl implements PropertyService{
         }
     }
 
-
-
-
+    public Property findPropertyById(UUID id) {
+        Optional<Property> optionalProperty = propertyRepository.findById(id);
+        if(optionalProperty.isPresent()){
+            return optionalProperty.get();
+        }
+        throw new NoSuchElementException("No property with id "+ id+ " found");
+    }
 
     }

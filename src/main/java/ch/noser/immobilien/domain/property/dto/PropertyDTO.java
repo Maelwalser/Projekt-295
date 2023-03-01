@@ -1,12 +1,23 @@
 package ch.noser.immobilien.domain.property.dto;
+import ch.noser.immobilien.core.AlphabetHyphen.AlphabetHyphen;
+import ch.noser.immobilien.core.AlphabetNumb.AlphabetNumb;
+import ch.noser.immobilien.core.URL.URL;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Range;
 
 public class PropertyDTO {
 
-
+    @AlphabetHyphen
     private String canton;
+
+    @AlphabetNumb
     private String name;
+    @Range(min = 500, max = 4500)
     private int price;
+
+    @NotNull
     private int size;
+    @URL
     private String Url;
 
 
