@@ -8,5 +8,6 @@ import org.mapstruct.Mapper;
 public interface RoleMapper {
 
     Role fromDTO(RoleDTO roleDTO);
+
     RoleDTO toDTO(Role role);
 }

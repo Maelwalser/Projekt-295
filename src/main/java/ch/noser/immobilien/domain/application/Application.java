@@ -17,14 +17,15 @@ public class Application {
 
 
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToOne
-    @JoinColumn(name ="property_id")
+    @JoinColumn(name = "property_id")
     private Property property;
 
     @ManyToOne
-    @JoinColumn(name="client_id")
+    @JoinColumn(name = "client_id")
     private User user;
 
 
@@ -36,11 +37,11 @@ public class Application {
         this.id = id;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -1,9 +1,5 @@
 package ch.noser.immobilien.domain.application;
 
-import ch.noser.immobilien.domain.property.Property;
-import ch.noser.immobilien.domain.user.User;
-import org.springframework.context.ApplicationListener;
-
 import java.util.UUID;
 
 public interface ApplicationService {
@@ -17,4 +13,6 @@ public interface ApplicationService {
 
 
     Application getApplicationById(UUID id);
+
+
 }

@@ -16,7 +16,7 @@ public class RoleController {
     private RoleMapper roleMapper;
 
     @Autowired
-    public RoleController(RoleService roleService, RoleMapper roleMapper){
+    public RoleController(RoleService roleService, RoleMapper roleMapper) {
         this.roleService = roleService;
         this.roleMapper = roleMapper;
     }

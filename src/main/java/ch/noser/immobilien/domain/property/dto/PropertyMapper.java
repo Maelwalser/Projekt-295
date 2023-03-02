@@ -10,7 +10,10 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PropertyMapper {
     PropertyDTO toDTO(Property property);
+
     Property fromDTO(PropertyDTO propertyDTO);
+
     List<PropertyDTO> allToDTO(List<Property> properties);
+
 
 }

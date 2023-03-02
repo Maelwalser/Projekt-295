@@ -1,12 +1,10 @@
 package ch.noser.immobilien.domain.property;
 
 
-import ch.noser.immobilien.domain.application.Application;
 import ch.noser.immobilien.domain.user.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -38,7 +36,6 @@ public class Property {
     @ManyToOne
     @JoinColumn(name = "agent_id")
     private User user;
-
 
 
     public UUID getId() {

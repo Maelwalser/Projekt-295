@@ -1,16 +1,14 @@
 package ch.noser.immobilien.domain.role;
 
 
-import ch.noser.immobilien.domain.user.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "roles")
-public class Role{
+public class Role {
 
     @Id
     @GeneratedValue
@@ -20,9 +18,6 @@ public class Role{
 
     @Column(name = "name")
     private String name;
-
-
-
 
 
     public UUID getId() {

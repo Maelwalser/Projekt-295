@@ -7,13 +7,13 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
 
 
     private RoleRepository roleRepository;
 
     @Autowired
-    public RoleServiceImpl(RoleRepository roleRepository){
+    public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 
@@ -26,7 +26,7 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public Role findRoleByName(String name) {
         Optional<Role> optionalRole = roleRepository.findAllByName(name);
-        if(optionalRole.isPresent()){
+        if (optionalRole.isPresent()) {
             return optionalRole.get();
         }
         throw new NoSuchElementException("No role found with name " + name);
