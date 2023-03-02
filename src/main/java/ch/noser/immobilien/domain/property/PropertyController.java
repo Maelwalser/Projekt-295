@@ -18,8 +18,8 @@ import java.util.UUID;
 public class PropertyController {
 
 
-    private PropertyService propertyService;
-    private PropertyMapper propertyMapper;
+    private final PropertyService propertyService;
+    private final PropertyMapper propertyMapper;
 
     @Autowired
     public PropertyController(PropertyService propertyService, PropertyMapper propertyMapper) {
