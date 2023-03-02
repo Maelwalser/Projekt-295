@@ -1,6 +1,6 @@
 package ch.noser.immobilien.domain.user.dto;
 
-public class UserDTO {
+public class UserDto {
 
 
     private String email;

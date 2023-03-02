@@ -1,7 +1,7 @@
 package ch.noser.immobilien.domain.application.dto;
 
 
-public class ApplicationDTO {
+public class ApplicationDto {
 
 
     private String status;

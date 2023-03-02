@@ -1,7 +1,6 @@
-package ch.noser.immobilien.core.URL;
+package ch.noser.immobilien.core.Url;
 
 
-import ch.noser.immobilien.core.AlphabetNumb.AlphabetNumbValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -10,8 +9,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Documented
-@Constraint(validatedBy = URLValidator.class)
-public @interface URL {
+@Constraint(validatedBy = UrlValidator.class)
+public @interface Url {
 
     String message() default "The given Text doesnt match the pattern";
 

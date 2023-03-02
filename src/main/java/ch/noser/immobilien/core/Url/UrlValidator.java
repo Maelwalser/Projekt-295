@@ -1,8 +1,8 @@
-package ch.noser.immobilien.core.URL;
+package ch.noser.immobilien.core.Url;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class URLValidator implements ConstraintValidator<URL, String> {
+public class UrlValidator implements ConstraintValidator<Url, String> {
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if(value==null){

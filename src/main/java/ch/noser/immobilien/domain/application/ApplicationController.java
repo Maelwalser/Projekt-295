@@ -1,7 +1,7 @@
 package ch.noser.immobilien.domain.application;
 
 
-import ch.noser.immobilien.domain.application.dto.ApplicationDTO;
+import ch.noser.immobilien.domain.application.dto.ApplicationDto;
 import ch.noser.immobilien.domain.application.dto.ApplicationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,19 +25,19 @@ public class ApplicationController {
 
 
     @PostMapping({"/applyFor/{propertyId}/byUser/{userId}"})
-    public ResponseEntity<ApplicationDTO> createApplication(@PathVariable("propertyId") UUID propertyId, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<ApplicationDto> createApplication(@PathVariable("propertyId") UUID propertyId, @PathVariable("userId") UUID userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(applicationMapper.toDTO(applicationService.createApplication(userId, propertyId)));
     }
 
 
     @PostMapping({"/accept/{applicationId}/byUser/{userId}"})
-    public ResponseEntity<ApplicationDTO> acceptApplication(@PathVariable("applicationId") UUID applicationId, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<ApplicationDto> acceptApplication(@PathVariable("applicationId") UUID applicationId, @PathVariable("userId") UUID userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(applicationMapper.toDTO(applicationService.acceptApplication(userId, applicationId)));
     }
 
 
     @PostMapping({"/deny/{applicationId}/byUser/{userId}"})
-    public ResponseEntity<ApplicationDTO> denyApplication(@PathVariable("applicationId") UUID applicationId, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<ApplicationDto> denyApplication(@PathVariable("applicationId") UUID applicationId, @PathVariable("userId") UUID userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(applicationMapper.toDTO(applicationService.denyApplication(userId, applicationId)));
     }
 }

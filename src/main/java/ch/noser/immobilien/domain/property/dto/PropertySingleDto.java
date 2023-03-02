@@ -2,11 +2,10 @@ package ch.noser.immobilien.domain.property.dto;
 
 import ch.noser.immobilien.core.AlphabetHyphen.AlphabetHyphen;
 import ch.noser.immobilien.core.AlphabetNumb.AlphabetNumb;
-import ch.noser.immobilien.core.URL.URL;
 import jakarta.validation.constraints.Min;
 import org.hibernate.validator.constraints.Range;
 
-public class PropertySingleDTO {
+public class PropertySingleDto {
     public static class Canton {
         @AlphabetHyphen
         private String canton;
@@ -61,7 +60,7 @@ public class PropertySingleDTO {
     }
 
     public static class Url {
-        @URL
+        @ch.noser.immobilien.core.Url.Url
         private String Url;
 
         public String getUrl() {

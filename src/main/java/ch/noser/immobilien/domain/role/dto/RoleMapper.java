@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface RoleMapper {
 
-    Role fromDTO(RoleDTO roleDTO);
+    Role fromDTO(RoleDto roleDTO);
 
-    RoleDTO toDTO(Role role);
+    RoleDto toDTO(Role role);
 }

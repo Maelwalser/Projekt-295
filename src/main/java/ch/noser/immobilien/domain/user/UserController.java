@@ -1,7 +1,7 @@
 package ch.noser.immobilien.domain.user;
 
 
-import ch.noser.immobilien.domain.user.dto.UserDTO;
+import ch.noser.immobilien.domain.user.dto.UserDto;
 import ch.noser.immobilien.domain.user.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +23,12 @@ public class UserController {
     }
 
     @PostMapping({"", "/"})
-    public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toDTO(userService.addUser(userMapper.fromDTO(userDTO))));
     }
 
     @GetMapping({"/name"})
-    public ResponseEntity<UserDTO> findUserByName(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
+    public ResponseEntity<UserDto> findUserByName(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
         return ResponseEntity.ok(userMapper.toDTO(userService.findByName(firstname, lastname)));
     }
 

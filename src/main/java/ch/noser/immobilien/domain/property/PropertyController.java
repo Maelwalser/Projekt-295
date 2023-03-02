@@ -1,9 +1,9 @@
 package ch.noser.immobilien.domain.property;
 
 
-import ch.noser.immobilien.domain.property.dto.PropertyDTO;
+import ch.noser.immobilien.domain.property.dto.PropertyDto;
 import ch.noser.immobilien.domain.property.dto.PropertyMapper;
-import ch.noser.immobilien.domain.property.dto.PropertySingleDTO;
+import ch.noser.immobilien.domain.property.dto.PropertySingleDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,24 +28,24 @@ public class PropertyController {
     }
 
     @PostMapping({"/add/byUser/{id}"})
-    public ResponseEntity<PropertyDTO> addProperty(@Valid @RequestBody PropertyDTO propertyDTO, @PathVariable("id") UUID userId) {
+    public ResponseEntity<PropertyDto> addProperty(@Valid @RequestBody PropertyDto propertyDTO, @PathVariable("id") UUID userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(propertyMapper.toDTO(propertyService.addProperty(propertyMapper.fromDTO(propertyDTO), userId)));
     }
 
     @GetMapping({"/canton"})
-    public ResponseEntity<List<PropertyDTO>> findPropertiesByCanton(@RequestParam("canton") String canton) {
+    public ResponseEntity<List<PropertyDto>> findPropertiesByCanton(@RequestParam("canton") String canton) {
         return ResponseEntity.ok(propertyMapper.allToDTO(propertyService.findAllByCanton(canton)));
     }
 
 
     @GetMapping({"/name"})
-    public ResponseEntity<PropertyDTO> findPropertyByName(@RequestParam("name") String name) {
+    public ResponseEntity<PropertyDto> findPropertyByName(@RequestParam("name") String name) {
         return ResponseEntity.ok(propertyMapper.toDTO(propertyService.findByName(name)));
     }
 
 
     @PostMapping({"/update/{id}/byUser/{userId}"})
-    public ResponseEntity<PropertyDTO> updateProperty(@PathVariable("id") UUID id, @PathVariable("userId") UUID userId, @Valid @RequestBody PropertyDTO propertyDTO) {
+    public ResponseEntity<PropertyDto> updateProperty(@PathVariable("id") UUID id, @PathVariable("userId") UUID userId, @Valid @RequestBody PropertyDto propertyDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(propertyMapper.toDTO(propertyService.updateProperty(id, userId, propertyMapper.fromDTO(propertyDTO))));
     }
 
@@ -57,30 +57,30 @@ public class PropertyController {
 
 
     @PatchMapping({"update/{id}/canton/byUser/{userId}"})
-    public ResponseEntity<PropertyDTO> updatePropertyCanton(@Valid @RequestBody PropertySingleDTO.Canton propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<PropertyDto> updatePropertyCanton(@Valid @RequestBody PropertySingleDto.Canton propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
         return ResponseEntity.ok(propertyMapper.toDTO(propertyService.updatePropertyCanton(id, userId, propertyDTO.getCanton())));
     }
 
 
     @PatchMapping({"update/{id}/name/byUser/{userId}"})
-    public ResponseEntity<PropertyDTO> updatePropertyName(@Valid @RequestBody PropertySingleDTO.Name propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<PropertyDto> updatePropertyName(@Valid @RequestBody PropertySingleDto.Name propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
         return ResponseEntity.ok(propertyMapper.toDTO(propertyService.updatePropertyName(id, userId, propertyDTO.getName())));
     }
 
 
     @PatchMapping({"update/{id}/price/byUser/{userId}"})
-    public ResponseEntity<PropertyDTO> updatePropertyPrice(@Valid @RequestBody PropertySingleDTO.Price propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<PropertyDto> updatePropertyPrice(@Valid @RequestBody PropertySingleDto.Price propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
         return ResponseEntity.ok(propertyMapper.toDTO(propertyService.updatePropertyPrice(id, userId, propertyDTO.getPrice())));
     }
 
     @PatchMapping({"update/{id}/size/byUser/{userId}"})
-    public ResponseEntity<PropertyDTO> updatePropertySize(@Valid @RequestBody PropertySingleDTO.Size propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<PropertyDto> updatePropertySize(@Valid @RequestBody PropertySingleDto.Size propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
         return ResponseEntity.ok(propertyMapper.toDTO(propertyService.updatePropertySize(id, userId, propertyDTO.getSize())));
     }
 
 
     @PatchMapping({"update/{id}/url/byUser/{userId}"})
-    public ResponseEntity<PropertyDTO> updatePropertyUrl(@Valid @RequestBody PropertySingleDTO.Url propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<PropertyDto> updatePropertyUrl(@Valid @RequestBody PropertySingleDto.Url propertyDTO, @PathVariable("id") UUID id, @PathVariable("userId") UUID userId) {
         return ResponseEntity.ok(propertyMapper.toDTO(propertyService.updatePropertyUrl(id, userId, propertyDTO.getUrl())));
     }
 

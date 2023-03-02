@@ -1,7 +1,7 @@
 package ch.noser.immobilien.domain.role;
 
 
-import ch.noser.immobilien.domain.role.dto.RoleDTO;
+import ch.noser.immobilien.domain.role.dto.RoleDto;
 import ch.noser.immobilien.domain.role.dto.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ public class RoleController {
     }
 
     @PostMapping({"", "/"})
-    public ResponseEntity<RoleDTO> addRole(@RequestBody RoleDTO roleDTO) {
+    public ResponseEntity<RoleDto> addRole(@RequestBody RoleDto roleDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(roleMapper.toDTO(roleService.addRole(roleMapper.fromDTO(roleDTO))));
     }
 }

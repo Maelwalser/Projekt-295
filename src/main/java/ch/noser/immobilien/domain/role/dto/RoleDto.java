@@ -1,6 +1,6 @@
 package ch.noser.immobilien.domain.role.dto;
 
-public class RoleDTO {
+public class RoleDto {
 
     private String name;
 
