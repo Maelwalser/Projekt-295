@@ -44,7 +44,7 @@ public class PropertyController {
     }
 
 
-    @PostMapping("/{propertyId}/user/{userId}")
+    @PutMapping("/{propertyId}/user/{userId}")
     public ResponseEntity<PropertyDto> updateProperty(@PathVariable("propertyId") UUID propertyId, @PathVariable("userId") UUID userId, @Valid @RequestBody PropertyDto propertyDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(propertyMapper.toDTO(propertyService.updateProperty(propertyId, userId, propertyMapper.fromDTO(propertyDTO))));
     }
