@@ -15,8 +15,8 @@ import java.util.UUID;
 @Service
 public class PropertyServiceImpl implements PropertyService {
 
-    private PropertyRepository propertyRepository;
-    private UserService userService;
+    private final PropertyRepository propertyRepository;
+    private final UserService userService;
 
     @Autowired
     public PropertyServiceImpl(PropertyRepository propertyRepository, UserService userService) {

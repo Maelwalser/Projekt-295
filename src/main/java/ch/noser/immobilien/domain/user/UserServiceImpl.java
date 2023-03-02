@@ -1,7 +1,6 @@
 package ch.noser.immobilien.domain.user;
 
 import ch.noser.immobilien.domain.role.RoleService;
-import ch.noser.immobilien.domain.user.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +12,8 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    private RoleService roleService;
+    private final UserRepository userRepository;
+    private final RoleService roleService;
 
 
 

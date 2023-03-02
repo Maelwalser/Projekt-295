@@ -10,7 +10,7 @@ import java.util.Optional;
 public class RoleServiceImpl implements RoleService {
 
 
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public RoleServiceImpl(RoleRepository roleRepository) {

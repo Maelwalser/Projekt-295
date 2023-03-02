@@ -17,9 +17,9 @@ import java.util.UUID;
 public class ApplicationServiceImpl implements ApplicationService {
 
 
-    private ApplicationRepository applicationRepository;
-    private UserService userService;
-    private PropertyService propertyService;
+    private final ApplicationRepository applicationRepository;
+    private final UserService userService;
+    private final PropertyService propertyService;
 
 
     @Autowired
@@ -33,15 +33,15 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public Application acceptApplication(UUID userId, UUID applicationId) {
         User user = userService.findUserById(userId);
-        Application application = getApplicationById(applicationId);
-        if (user.getRole().getName().equals("Agent") && application.getProperty().getUser().equals(user)) {
-            for (Application appli : applicationRepository.findAllByProperty(application.getProperty())) {
-                appli.setStatus(Status.DENIED);
-                applicationRepository.save(appli);
+        Application currentApplication = getApplicationById(applicationId);
+        if (user.getRole().getName().equals("Agent") && currentApplication.getProperty().getUser().equals(user)) {
+            for (Application application : applicationRepository.findAllByProperty(currentApplication.getProperty())) {
+                application.setStatus(Status.DENIED);
+                applicationRepository.save(application);
             }
-            application.setStatus(Status.ACCEPTED);
-            applicationRepository.save(application);
-            return application;
+            currentApplication.setStatus(Status.ACCEPTED);
+            applicationRepository.save(currentApplication);
+            return currentApplication;
         }
         throw new HttpServerErrorException(HttpStatus.UNAUTHORIZED);
     }
@@ -51,8 +51,8 @@ public class ApplicationServiceImpl implements ApplicationService {
         User user = userService.findUserById(userId);
         Property property = propertyService.findPropertyById(propertyId);
         boolean multipleApplications = false;
-        for (Application appli : applicationRepository.findAllByProperty(property)) {
-            multipleApplications = appli.getUser().equals(user);
+        for (Application application : applicationRepository.findAllByProperty(property)) {
+            multipleApplications = application.getUser().equals(user);
         }
         if (user.getRole().getName().equals("Client") && !multipleApplications) {
             Application application = new Application();
