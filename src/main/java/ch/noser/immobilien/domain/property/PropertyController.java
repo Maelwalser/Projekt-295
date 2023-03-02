@@ -51,8 +51,9 @@ public class PropertyController {
 
 
     @DeleteMapping("/{propertyId}/user/{userId}")
-    public void deleteProperty(@PathVariable("propertyId") UUID propertyId, @PathVariable("userId") UUID userId) {
+    public ResponseEntity<Void> deleteProperty(@PathVariable("propertyId") UUID propertyId, @PathVariable("userId") UUID userId) {
         propertyService.deleteProperty(propertyId, userId);
+        return ResponseEntity.ok().build();
     }
 
 
