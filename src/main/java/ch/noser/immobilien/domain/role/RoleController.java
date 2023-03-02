@@ -21,7 +21,7 @@ public class RoleController {
         this.roleMapper = roleMapper;
     }
 
-    @PostMapping({"", "/"})
+    @PostMapping("")
     public ResponseEntity<RoleDto> addRole(@RequestBody RoleDto roleDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(roleMapper.toDTO(roleService.addRole(roleMapper.fromDTO(roleDTO))));
     }

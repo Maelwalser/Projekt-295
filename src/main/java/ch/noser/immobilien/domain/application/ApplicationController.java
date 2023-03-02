@@ -24,19 +24,19 @@ public class ApplicationController {
     }
 
 
-    @PostMapping({"/applyFor/{propertyId}/byUser/{userId}"})
+    @PostMapping("/applyFor/{propertyId}/user/{userId}")
     public ResponseEntity<ApplicationDto> createApplication(@PathVariable("propertyId") UUID propertyId, @PathVariable("userId") UUID userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(applicationMapper.toDTO(applicationService.createApplication(userId, propertyId)));
     }
 
 
-    @PostMapping({"/accept/{applicationId}/byUser/{userId}"})
+    @PostMapping("/accept/{applicationId}/user/{userId}")
     public ResponseEntity<ApplicationDto> acceptApplication(@PathVariable("applicationId") UUID applicationId, @PathVariable("userId") UUID userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(applicationMapper.toDTO(applicationService.acceptApplication(userId, applicationId)));
     }
 
 
-    @PostMapping({"/deny/{applicationId}/byUser/{userId}"})
+    @PostMapping("/deny/{applicationId}/user/{userId}")
     public ResponseEntity<ApplicationDto> denyApplication(@PathVariable("applicationId") UUID applicationId, @PathVariable("userId") UUID userId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(applicationMapper.toDTO(applicationService.denyApplication(userId, applicationId)));
     }

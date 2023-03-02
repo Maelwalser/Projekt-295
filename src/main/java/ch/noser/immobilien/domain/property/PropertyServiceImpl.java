@@ -37,13 +37,12 @@ public class PropertyServiceImpl implements PropertyService {
 
 
     @Override
-    public void deleteProperty(UUID id, UUID userId) {
+    public void deleteProperty(UUID propertyId, UUID userId) {
         User user = userService.findUserById(userId);
         if (user.getRole().getName().equals("Agent")) {
-            Optional<Property> optionalProperty = propertyRepository.findById(id);
+            Optional<Property> optionalProperty = propertyRepository.findById(propertyId);
             if (optionalProperty.isPresent() && optionalProperty.get().getUser().equals(user)) {
-                propertyRepository.deleteById(id);
-
+                propertyRepository.deleteById(propertyId);
             }
         }
     }
@@ -60,10 +59,10 @@ public class PropertyServiceImpl implements PropertyService {
 
 
     @Override
-    public Property updateProperty(UUID id, UUID userId, Property newProperty) {
+    public Property updateProperty(UUID propertyId, UUID userId, Property newProperty) {
         User user = userService.findUserById(userId);
         if (user.getRole().getName().equals("Agent")) {
-            Property property = findPropertyById(id);
+            Property property = findPropertyById(propertyId);
             if (property.getUser().equals(user)) {
                 newProperty.setId(property.getId());
                 newProperty.setUser(property.getUser());
@@ -74,19 +73,19 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property findPropertyById(UUID id) {
-        Optional<Property> optionalProperty = propertyRepository.findById(id);
+    public Property findPropertyById(UUID propertyId) {
+        Optional<Property> optionalProperty = propertyRepository.findById(propertyId);
         if (optionalProperty.isPresent()) {
             return optionalProperty.get();
         }
-        throw new NoSuchElementException("No property with id " + id + " found");
+        throw new NoSuchElementException("No property with id " + propertyId + " found");
     }
 
     @Override
-    public Property updatePropertyCanton(UUID id, UUID userId, String canton) {
+    public Property updatePropertyCanton(UUID propertyId, UUID userId, String canton) {
         User user = userService.findUserById(userId);
         if (user.getRole().getName().equals("Agent")) {
-            Property property = findPropertyById(id);
+            Property property = findPropertyById(propertyId);
             if (property.getUser().equals(user)) {
                 property.setCanton(canton);
                 return propertyRepository.save(property);
@@ -96,10 +95,10 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property updatePropertyName(UUID id, UUID userId, String name) {
+    public Property updatePropertyName(UUID propertyId, UUID userId, String name) {
         User user = userService.findUserById(userId);
         if (user.getRole().getName().equals("Agent")) {
-            Property property = findPropertyById(id);
+            Property property = findPropertyById(propertyId);
             if (property.getUser().equals(user)) {
                 property.setName(name);
                 return propertyRepository.save(property);
@@ -109,10 +108,10 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property updatePropertyPrice(UUID id, UUID userId, int price) {
+    public Property updatePropertyPrice(UUID propertyId, UUID userId, int price) {
         User user = userService.findUserById(userId);
         if (user.getRole().getName().equals("Agent")) {
-            Property property = findPropertyById(id);
+            Property property = findPropertyById(propertyId);
             if (property.getUser().equals(user)) {
                 property.setPrice(price);
                 return propertyRepository.save(property);
@@ -122,10 +121,10 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property updatePropertySize(UUID id, UUID userId, int size) {
+    public Property updatePropertySize(UUID propertyId, UUID userId, int size) {
         User user = userService.findUserById(userId);
         if (user.getRole().getName().equals("Agent")) {
-            Property property = findPropertyById(id);
+            Property property = findPropertyById(propertyId);
             if (property.getUser().equals(user)) {
                 property.setSize(size);
                 return propertyRepository.save(property);
@@ -135,10 +134,10 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property updatePropertyUrl(UUID id, UUID userId, String url) {
+    public Property updatePropertyUrl(UUID propertyId, UUID userId, String url) {
         User user = userService.findUserById(userId);
         if (user.getRole().getName().equals("Agent")) {
-            Property property = findPropertyById(id);
+            Property property = findPropertyById(propertyId);
             if (property.getUser().equals(user)) {
                 property.setUrl(url);
                 return propertyRepository.save(property);

@@ -22,12 +22,12 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @PostMapping({"", "/"})
+    @PostMapping("")
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toDTO(userService.addUser(userMapper.fromDTO(userDTO))));
     }
 
-    @GetMapping({"/name"})
+    @GetMapping("/name")
     public ResponseEntity<UserDto> findUserByName(@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
         return ResponseEntity.ok(userMapper.toDTO(userService.findByName(firstname, lastname)));
     }

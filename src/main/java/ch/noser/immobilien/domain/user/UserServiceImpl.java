@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
-        if (user.getEmail().matches("(.)*@noseryoung.ch")) {
+        if (user.getEmail().matches("(.)*@noseryoung.com")) {
             user.setRole(roleService.findRoleByName("Agent"));
         } else {
             user.setRole(roleService.findRoleByName("Client"));
