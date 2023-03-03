@@ -1,6 +1,5 @@
 package ch.noser.immobilien.domain.user;
 
-
 import ch.noser.immobilien.domain.user.dto.UserDto;
 import ch.noser.immobilien.domain.user.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;

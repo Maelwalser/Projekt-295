@@ -1,6 +1,5 @@
 package ch.noser.immobilien.domain.role;
 
-
 import ch.noser.immobilien.domain.role.dto.RoleDto;
 import ch.noser.immobilien.domain.role.dto.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,6 @@ package ch.noser.immobilien.domain.user;
 import ch.noser.immobilien.domain.role.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;

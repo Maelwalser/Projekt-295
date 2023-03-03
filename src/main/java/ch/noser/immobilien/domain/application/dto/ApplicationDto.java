@@ -1,6 +1,5 @@
 package ch.noser.immobilien.domain.application.dto;
 
-
 public class ApplicationDto {
 
 

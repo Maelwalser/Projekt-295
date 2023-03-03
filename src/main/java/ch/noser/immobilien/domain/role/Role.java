@@ -1,9 +1,7 @@
 package ch.noser.immobilien.domain.role;
 
-
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
-
 import java.util.UUID;
 
 @Entity

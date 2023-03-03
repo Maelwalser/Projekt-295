@@ -1,6 +1,5 @@
 package ch.noser.immobilien.domain.application.dto;
 
-
 import ch.noser.immobilien.domain.application.Application;
 import org.mapstruct.Mapper;
 

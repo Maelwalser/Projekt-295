@@ -4,7 +4,6 @@ import ch.noser.immobilien.domain.property.Property;
 import ch.noser.immobilien.domain.user.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
-
 import java.util.UUID;
 
 @Entity

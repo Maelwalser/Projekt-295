@@ -2,13 +2,11 @@ package ch.noser.immobilien.domain.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-
 
     private final RoleRepository roleRepository;
 
